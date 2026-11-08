@@ -3245,6 +3245,26 @@
       "cacheActions": [
         "actions/cache"
       ]
+    },
+    {
+      "id": "styne-2x4",
+      "provider": "Styne product path",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "styne-2x4",
+      "tier": "standard",
+      "storage": "nvme",
+      "suites": [
+        "rust",
+        "node",
+        "docker",
+        "cache",
+        "burst"
+      ],
+      "cacheActions": [
+        "actions/cache"
+      ]
     }
   ]
 }
