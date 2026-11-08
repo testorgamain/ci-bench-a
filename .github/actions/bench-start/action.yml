@@ -1,0 +1,50 @@
+name: Bench start
+description: Record the host before the workload touches it.
+runs:
+  using: composite
+  steps:
+    - name: zram on tmpfs runners
+      shell: bash
+      run: |
+        # extras=tmpfs keeps Docker's data and the workspace in RAM. RunsOn's
+        # agent adds zram swap only on runners with 16 GiB or less until
+        # runs-on/monorepo#552 (zram on tmpfs runners of any size) ships; until
+        # then the harness sets it up the same way (sized to RAM, priority
+        # 100, swappiness 100, page-cluster 0) and lifts the tmpfs cap to 150%
+        # of RAM, as that change does. A host that already has swap (the agent
+        # once it ships, or a small runner) is left alone.
+        grep -q ' /mnt/tmpfs tmpfs ' /proc/mounts || exit 0
+        if [ -n "$(swapon --noheadings)" ]; then
+          echo "tmpfs runner already has swap:"; swapon --show
+          exit 0
+        fi
+        mem=$(awk '/MemTotal/ {print $2 * 1024}' /proc/meminfo)
+        sudo modprobe zram
+        [ "$(cat /sys/block/zram0/disksize)" = 0 ] || { echo "zram0 already in use"; exit 0; }
+        echo "$mem" | sudo tee /sys/block/zram0/disksize >/dev/null
+        sudo mkswap /dev/zram0 >/dev/null
+        sudo swapon -p 100 /dev/zram0
+        sudo sysctl -q vm.swappiness=100 vm.page-cluster=0
+        sudo mount -o remount,size=150% /mnt/tmpfs
+        swapon --show
+        df -h /mnt/tmpfs
+    - shell: bash
+      run: |
+        mkdir -p "$RUNNER_TEMP/bench"
+        python3 "$GITHUB_ACTION_PATH/../../../bin/host-info.py" > "$RUNNER_TEMP/bench/host.json" || true
+        python3 - <<'PY'
+        import json, os
+        h = json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "bench", "host.json")))
+        s = h.get("storage") or {}
+        w = s.get("workspace") or {}
+        d = s.get("docker") or {}
+        ec2 = h.get("ec2") or {}
+        print(f"cpu      {h['cpu']['model']} x{h['cpu']['logicalCpus']}, {h.get('memoryGiB')} GiB")
+        print(f"workspace {w.get('fstype')} on {w.get('source')} ({w.get('freeGiB')} GiB free of {w.get('sizeGiB')})")
+        print(f"docker   {d.get('fstype')} on {d.get('source')} ({d.get('freeGiB')} GiB free)")
+        if ec2.get("instanceType"):
+            print(f"ec2      {ec2['instanceType']} {ec2.get('lifecycle')} {ec2.get('availabilityZone')} {ec2.get('amiId')}")
+        ro = h.get("runsOn") or {}
+        if ro.get("version"):
+            print(f"runs-on  {ro['version']} ({ro.get('stackName')}), image {ro.get('amiId')}")
+        PY

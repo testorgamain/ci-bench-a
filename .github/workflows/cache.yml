@@ -1,0 +1,401 @@
+name: Cache save and restore
+
+on:
+  # Staggered with the other suites; schedules only fire on the default branch.
+  schedule:
+    - cron: "0 4 2-31/3 * *"
+  workflow_dispatch:
+    inputs:
+      runners:
+        description: "default (the suite's runners; also when empty), all, or comma-separated runner ids from config/runners.json"
+        required: false
+        default: ""
+      arch:
+        description: "all, x64 or arm64 (empty: all). Trigger files are read on push only"
+        required: false
+        default: ""
+      iterations:
+        description: "Runs per runner, at most 5 (empty: 1)"
+        required: false
+        default: ""
+  push:
+    branches: [main, harness]
+    paths:
+      - triggers/cache.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cache-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    # The first push of a new branch matches every paths filter: never a run.
+    if: github.event_name != 'push' || github.event.before != '0000000000000000000000000000000000000000'
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.plan.outputs.run }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      wave1: ${{ steps.plan.outputs.wave1 }}
+      wave2: ${{ steps.plan.outputs.wave2 }}
+      wave3: ${{ steps.plan.outputs.wave3 }}
+      wave4: ${{ steps.plan.outputs.wave4 }}
+      wave5: ${{ steps.plan.outputs.wave5 }}
+      wave6: ${{ steps.plan.outputs.wave6 }}
+      wave7: ${{ steps.plan.outputs.wave7 }}
+      wave8: ${{ steps.plan.outputs.wave8 }}
+      wave9: ${{ steps.plan.outputs.wave9 }}
+      wave10: ${{ steps.plan.outputs.wave10 }}
+      wave11: ${{ steps.plan.outputs.wave11 }}
+      wave12: ${{ steps.plan.outputs.wave12 }}
+      wave13: ${{ steps.plan.outputs.wave13 }}
+      wave14: ${{ steps.plan.outputs.wave14 }}
+      wave15: ${{ steps.plan.outputs.wave15 }}
+      wave16: ${{ steps.plan.outputs.wave16 }}
+      wave17: ${{ steps.plan.outputs.wave17 }}
+      wave18: ${{ steps.plan.outputs.wave18 }}
+      wave19: ${{ steps.plan.outputs.wave19 }}
+      wave20: ${{ steps.plan.outputs.wave20 }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - id: plan
+        # Inputs go through env, never into the script text.
+        env:
+          SUITE: cache
+          RUNNERS: ${{ inputs.runners }}
+          ARCH: ${{ inputs.arch }}
+          ITERATIONS: ${{ inputs.iterations }}
+          EVENT: ${{ github.event_name }}
+          PRIVATE: ${{ github.event.repository.private }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -n "$PRIVATE" ] || PRIVATE=$(gh api "repos/$GITHUB_REPOSITORY" --jq .private)
+          python3 bin/plan.py --suite "$SUITE" \
+            --runners "$RUNNERS" --arch "$ARCH" --iterations "$ITERATIONS" \
+            --trigger "triggers/$SUITE.json" --event "$EVENT" \
+            --private "$PRIVATE" --out plan.json
+      - if: steps.plan.outputs.run == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: plan
+          path: plan.json
+
+  # Jobs whose cache goes to the provider's own storage: all at once.
+  bench:
+    needs: plan
+    if: needs.plan.outputs.run == 'true' && needs.plan.outputs.matrix != ''
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: &bench-steps
+      - id: harness
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          path: .harness
+          persist-credentials: false
+      - name: Host info
+        uses: ./.harness/.github/actions/bench-start
+      - name: Magic Cache
+        # On RunsOn (extras=s3-cache), actions/cache goes to the S3 bucket in
+        # the customer's account.
+        if: matrix.provider == 'RunsOn'
+        uses: runs-on/action@dfae4d98c5537a0dc7bbb7e6b9211f30ba240f6d # v2.4.0
+      - name: Generate 4 GiB file
+        run: head -c 4G /dev/urandom > cache-file
+      - name: "phase: cache save"
+        if: matrix.cacheAction == 'actions/cache'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: cache-file
+          key: bench-${{ matrix.key }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: "phase: cache save"
+        if: matrix.cacheAction == 'WarpBuilds/cache'
+        uses: WarpBuilds/cache/save@dad44e2487e9dc889ad6e6bd198e77bb2d828eee # v2.0.0
+        with:
+          path: cache-file
+          key: bench-${{ matrix.key }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Remove file
+        # The restore follows immediately: a cache that isn't read-after-write
+        # consistent (e.g. "cache hit" then "blob does not exist") fails here,
+        # the way a quick follow-up job would.
+        run: rm cache-file
+      - name: "phase: cache restore"
+        if: matrix.cacheAction == 'actions/cache'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: cache-file
+          key: bench-${{ matrix.key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
+      - name: "phase: cache restore"
+        if: matrix.cacheAction == 'WarpBuilds/cache'
+        uses: WarpBuilds/cache/restore@dad44e2487e9dc889ad6e6bd198e77bb2d828eee # v2.0.0
+        with:
+          path: cache-file
+          key: bench-${{ matrix.key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
+      - name: "phase: verify"
+        # Some cache actions report a save that didn't complete, then "restore"
+        # nothing. Only a complete 4 GiB file counts as a restore.
+        run: test -f cache-file && test "$(stat -c %s cache-file)" -eq 4294967296
+      - name: Upload
+        if: always() && steps.harness.outcome == 'success'
+        uses: ./.harness/.github/actions/bench-finish
+        with:
+          key: ${{ matrix.key }}
+
+  # Jobs whose actions/cache stores in this repository's GitHub cache
+  # (bin/plan.py): in waves of two, 8 GiB in flight under the repository's
+  # cache storage cap (10 GB by default), so GitHub never evicts an entry
+  # another job is still restoring. Each wave starts when the previous one
+  # ended (whatever its outcome, unless the run was cancelled), so GitHub
+  # announces its jobs, and providers start their runners, only then. Same
+  # steps as bench. bin/plan.py MAX_WAVES matches the number of waves.
+  bench-w1:
+    needs: plan
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave1 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave1) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w2:
+    needs: [plan, bench-w1]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave2 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave2) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w3:
+    needs: [plan, bench-w2]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave3 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave3) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w4:
+    needs: [plan, bench-w3]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave4 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave4) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w5:
+    needs: [plan, bench-w4]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave5 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave5) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w6:
+    needs: [plan, bench-w5]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave6 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave6) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w7:
+    needs: [plan, bench-w6]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave7 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave7) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w8:
+    needs: [plan, bench-w7]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave8 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave8) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w9:
+    needs: [plan, bench-w8]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave9 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave9) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w10:
+    needs: [plan, bench-w9]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave10 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave10) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w11:
+    needs: [plan, bench-w10]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave11 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave11) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w12:
+    needs: [plan, bench-w11]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave12 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave12) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w13:
+    needs: [plan, bench-w12]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave13 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave13) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w14:
+    needs: [plan, bench-w13]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave14 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave14) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w15:
+    needs: [plan, bench-w14]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave15 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave15) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w16:
+    needs: [plan, bench-w15]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave16 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave16) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w17:
+    needs: [plan, bench-w16]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave17 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave17) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w18:
+    needs: [plan, bench-w17]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave18 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave18) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w19:
+    needs: [plan, bench-w18]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave19 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave19) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  bench-w20:
+    needs: [plan, bench-w19]
+    if: ${{ !cancelled() && needs.plan.outputs.run == 'true' && needs.plan.outputs.wave20 != '' }}
+    name: ${{ matrix.key }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.wave20) }}
+    runs-on: ${{ matrix.label }}
+    timeout-minutes: 40
+    steps: *bench-steps
+
+  publish:
+    needs: [plan, bench, bench-w1, bench-w2, bench-w3, bench-w4, bench-w5, bench-w6, bench-w7, bench-w8, bench-w9, bench-w10, bench-w11, bench-w12, bench-w13, bench-w14, bench-w15, bench-w16, bench-w17, bench-w18, bench-w19, bench-w20]
+    if: always() && needs.plan.result == 'success' && needs.plan.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+      # Annotations (check runs) carry the job's error message.
+      checks: read
+      # GitHub OIDC token for the read-only RunsOn cost role (publish action).
+      id-token: write
+    concurrency:
+      group: publish-results-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      # Keeps its credentials: the publish step pushes results.
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/publish
+        with:
+          cost-reader-role: ${{ vars.AWS_COST_READER_ROLE_ARN }}
+          runs-on-log-group: ${{ vars.RUNS_ON_LOG_GROUP }}
+          aws-region: ${{ vars.AWS_REGION }}
