@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "suite": "node",
+  "workload": {
+    "name": "TypeScript: opencode",
+    "description": "Cold clone, bun install and typecheck of anomalyco/opencode, at the commit and Bun version ComputeSDK's DAX sandbox benchmark uses. Unlike DAX, typecheck runs `turbo typecheck --concurrency=4` on every runner, whatever its size: turbo's default parallelism needs more than 16 GB and gets OOM-killed on runners without swap. Totals are therefore not directly comparable with DAX. Turbo's local and remote caches are off (`--cache=local:,remote:`), so a runner with a Turborepo remote cache still typechecks every package.",
+    "repository": "https://github.com/anomalyco/opencode",
+    "ref": "08fb47373509ba64b13441061314eeacf4264f51",
+    "toolchain": "bun 1.3.14, node-gyp 12.4.0 on PATH (native modules built on every runner)",
+    "reference": "https://www.computesdk.com/benchmarks/sandboxes/dax",
+    "typecheck": "bun turbo typecheck --concurrency=4 --cache=local:,remote:"
+  },
+  "run": {
+    "id": 42531953465,
+    "attempt": 1,
+    "date": "2026-11-08",
+    "startedAt": "2026-11-08T22:47:11Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/42531953465",
+    "sha": "15bfdfedc6537d894b3c99787da2667119fd3cea",
+    "event": "workflow_dispatch",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "workflow_dispatch",
+    "source": "inputs",
+    "origin": {
+      "event": "workflow_dispatch",
+      "source": "inputs",
+      "runId": 42531953465
+    },
+    "runners": "styne-2x4",
+    "arch": "all",
+    "iterations": 1,
+    "defaultRunners": 96,
+    "subset": true,
+    "missingDefaultRunners": [
+      "github-x64",
+      "github-x64-8x32",
+      "github-x64-2x8",
+      "github-arm64",
+      "github-arm64-2x8",
+      "runson-m8azn-x64",
+      "runson-m8a-x64",
+      "runson-m8id-x64",
+      "runson-r8a-tmpfs-x64",
+      "runson-r8a-2xlarge-tmpfs-x64",
+      "runson-m9g-arm64",
+      "runson-m9gd-arm64",
+      "runson-c8g-arm64-4x8",
+      "runson-c8g-arm64-8x16",
+      "runson-m9g-arm64-8x32",
+      "blacksmith-x64",
+      "blacksmith-x64-8x32",
+      "blacksmith-x64-2x8",
+      "blacksmith-arm64",
+      "blacksmith-arm64-8x32",
+      "blacksmith-arm64-2x6",
+      "namespace-x64",
+      "namespace-x64-4x8",
+      "namespace-x64-8x16",
+      "namespace-x64-8x32",
+      "namespace-x64-2x8",
+      "namespace-arm64",
+      "namespace-arm64-4x8",
+      "namespace-arm64-apple",
+      "namespace-arm64-8x16",
+      "namespace-arm64-8x32",
+      "namespace-arm64-2x8",
+      "namespace-arm64-apple-2x8",
+      "warpbuild-x64",
+      "warpbuild-x64-8x32",
+      "warpbuild-x64-2x",
+      "warpbuild-arm64",
+      "warpbuild-arm64-xfast",
+      "warpbuild-arm64-xfast-12x",
+      "warpbuild-arm64-8x32",
+      "warpbuild-arm64-2x",
+      "ubicloud-x64",
+      "ubicloud-premium-x64",
+      "ubicloud-x64-8x32",
+      "ubicloud-premium-x64-8x32",
+      "ubicloud-x64-2",
+      "ubicloud-premium-x64-2",
+      "ubicloud-arm64",
+      "ubicloud-arm64-8x32",
+      "ubicloud-arm64-2",
+      "avrea-x64",
+      "avrea-x64-8x32",
+      "avrea-x64-2",
+      "avrea-arm64",
+      "avrea-arm64-8x32",
+      "avrea-arm64-2",
+      "codebuild-x64",
+      "codebuild-x64-8x16",
+      "codebuild-x64-2x3",
+      "boat-x64-2x4",
+      "boat-x64",
+      "boat-x64-8x16",
+      "runson-m8azn-gp3tuned-x64",
+      "runson-c8a-x64-4x8",
+      "runson-c8a-x64-8x16",
+      "runson-i7i-large",
+      "runson-i7i-xlarge",
+      "runson-i7i-2xlarge",
+      "runson-m8id-large",
+      "runson-m8id-2xlarge",
+      "runson-m9gd-large",
+      "runson-m9gd-2xlarge",
+      "runson-m9g-xlarge-tmpfs",
+      "runson-r9g-xlarge-tmpfs",
+      "runson-m9g-2xlarge-tmpfs",
+      "runson-c8g-large",
+      "runson-m9g-large",
+      "runson-m8azn-large",
+      "runson-m8azn-3xlarge",
+      "runson-m8a-2xlarge",
+      "runson-m8a-2xlarge-gp3tuned",
+      "runson-m8a-2xlarge-tmpfs",
+      "runson-c8a-large",
+      "runson-m8a-large",
+      "runson-r8a-large",
+      "runson-r8a-large-tmpfs",
+      "runson-r9g-large-tmpfs",
+      "runson-t8i-medium",
+      "runson-m8i-large",
+      "runson-m8i-flex-large",
+      "runson-m8i-xlarge",
+      "runson-m8i-flex-xlarge",
+      "runson-m8i-2xlarge",
+      "runson-m8i-flex-2xlarge",
+      "ours-x64"
+    ]
+  },
+  "runners": [
+    {
+      "id": "styne-2x4",
+      "provider": "Styne product path",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "styne-2x4",
+      "tier": "standard",
+      "storage": "nvme"
+    }
+  ],
+  "results": [
+    {
+      "key": "styne-2x4--1",
+      "runnerId": "styne-2x4",
+      "provider": "Styne product path",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "failure",
+      "failedAt": "Native build tools",
+      "queueSeconds": 1,
+      "jobSeconds": 13,
+      "workloadSeconds": null,
+      "createdAt": "2026-11-08T22:47:20Z",
+      "startedAt": "2026-11-08T22:47:21Z",
+      "phases": [
+        {
+          "name": "toolchain",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "clone",
+          "seconds": 0,
+          "status": "skipped"
+        },
+        {
+          "name": "bun install",
+          "seconds": 0,
+          "status": "skipped"
+        },
+        {
+          "name": "typecheck",
+          "seconds": 0,
+          "status": "skipped"
+        }
+      ],
+      "runnerName": "styne-2x4-8c4e7431b73d",
+      "runnerGroup": "default",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42531953465/job/128887908576",
+      "host": {
+        "collectedAt": "2026-11-08T22:47:27+00:00",
+        "arch": "x86_64",
+        "kernel": "6.16.9",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 9354P 32-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 2,
+          "threadsPerCore": 1,
+          "maxMHz": null,
+          "virtualization": null,
+          "hypervisor": "KVM"
+        },
+        "memoryGiB": 3.84,
+        "memory": {
+          "swapGiB": 0.0,
+          "availableGiB": 1.97,
+          "swapDevices": [],
+          "overcommit": 0,
+          "swappiness": 60,
+          "zram": [
+            "zram0"
+          ]
+        },
+        "manufacturer": null,
+        "product": null,
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/_work/ci-bench-a/ci-bench-a",
+            "source": "rootfs",
+            "target": "/",
+            "fstype": "rootfs",
+            "options": "rw,size=1758268k,nr_inodes=439567",
+            "sizeGiB": 1.7,
+            "freeGiB": 0.3
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "tmpfs",
+            "target": "/tmp",
+            "fstype": "tmpfs",
+            "options": "rw,relatime",
+            "sizeGiB": 1.9,
+            "freeGiB": 1.9
+          },
+          "root": {
+            "path": "/",
+            "source": "rootfs",
+            "target": "/",
+            "fstype": "rootfs",
+            "options": "rw,size=1758268k,nr_inodes=439567",
+            "sizeGiB": 1.7,
+            "freeGiB": 0.3
+          },
+          "docker": null,
+          "dockerDriver": null,
+          "devices": [
+            {
+              "name": "nullb0",
+              "type": "disk",
+              "sizeGiB": 250.0,
+              "model": null,
+              "rotational": false,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null
+            },
+            {
+              "name": "zram0",
+              "type": "disk",
+              "sizeGiB": null,
+              "model": null,
+              "rotational": false,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS20326 TeraSwitch Networks Inc.",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE"
+        },
+        "runner": {
+          "name": "styne-2x4-8c4e7431b73d",
+          "environment": "self-hosted",
+          "imageOS": null,
+          "imageVersion": null
+        }
+      },
+      "logTail": [
+        "1.3.14",
+        "v18.19.1",
+        "Run # opencode's install compiles native modules (tree-sitter-*), which",
+        "/home/runner/_work/_temp/990139bc-73dc-4fe8-9b98-9ec53e26bcf7.sh: line 6: npm: command not found",
+        "##[error]Process completed with exit code 127."
+      ]
+    }
+  ]
+}
