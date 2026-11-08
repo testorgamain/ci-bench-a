@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "suite": "rust",
+  "workload": {
+    "name": "Rust: spotify-player",
+    "description": "Cold build of aome510/spotify-player, the project Namespace uses for its own Rust caching benchmark: checkout, apt dependencies, toolchain install, cargo fmt, cargo test, and two cargo clippy passes. No cache.",
+    "repository": "https://github.com/aome510/spotify-player",
+    "ref": "7dc9d17a7bf5671eb6129fdf9127729f659637fc",
+    "toolchain": "rust 1.98.1"
+  },
+  "run": {
+    "id": 42512402004,
+    "attempt": 1,
+    "date": "2026-11-08",
+    "startedAt": "2026-11-08T18:55:29Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/42512402004",
+    "sha": "08db0c9e815434f8385e5ef815501e2ee73f8d02",
+    "event": "workflow_dispatch",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "workflow_dispatch",
+    "source": "inputs",
+    "origin": {
+      "event": "workflow_dispatch",
+      "source": "inputs",
+      "runId": 42512402004
+    },
+    "runners": "ours-x64",
+    "arch": "all",
+    "iterations": 1,
+    "defaultRunners": 95,
+    "subset": true,
+    "missingDefaultRunners": [
+      "github-x64",
+      "github-x64-8x32",
+      "github-x64-2x8",
+      "github-arm64",
+      "github-arm64-2x8",
+      "runson-m8azn-x64",
+      "runson-m8a-x64",
+      "runson-m8id-x64",
+      "runson-r8a-tmpfs-x64",
+      "runson-r8a-2xlarge-tmpfs-x64",
+      "runson-m9g-arm64",
+      "runson-m9gd-arm64",
+      "runson-c8g-arm64-4x8",
+      "runson-c8g-arm64-8x16",
+      "runson-m9g-arm64-8x32",
+      "blacksmith-x64",
+      "blacksmith-x64-8x32",
+      "blacksmith-x64-2x8",
+      "blacksmith-arm64",
+      "blacksmith-arm64-8x32",
+      "blacksmith-arm64-2x6",
+      "namespace-x64",
+      "namespace-x64-4x8",
+      "namespace-x64-8x16",
+      "namespace-x64-8x32",
+      "namespace-x64-2x8",
+      "namespace-arm64",
+      "namespace-arm64-4x8",
+      "namespace-arm64-apple",
+      "namespace-arm64-8x16",
+      "namespace-arm64-8x32",
+      "namespace-arm64-2x8",
+      "namespace-arm64-apple-2x8",
+      "warpbuild-x64",
+      "warpbuild-x64-8x32",
+      "warpbuild-x64-2x",
+      "warpbuild-arm64",
+      "warpbuild-arm64-xfast",
+      "warpbuild-arm64-xfast-12x",
+      "warpbuild-arm64-8x32",
+      "warpbuild-arm64-2x",
+      "ubicloud-x64",
+      "ubicloud-premium-x64",
+      "ubicloud-x64-8x32",
+      "ubicloud-premium-x64-8x32",
+      "ubicloud-x64-2",
+      "ubicloud-premium-x64-2",
+      "ubicloud-arm64",
+      "ubicloud-arm64-8x32",
+      "ubicloud-arm64-2",
+      "avrea-x64",
+      "avrea-x64-8x32",
+      "avrea-x64-2",
+      "avrea-arm64",
+      "avrea-arm64-8x32",
+      "avrea-arm64-2",
+      "codebuild-x64",
+      "codebuild-x64-8x16",
+      "codebuild-x64-2x3",
+      "boat-x64-2x4",
+      "boat-x64",
+      "boat-x64-8x16",
+      "runson-m8azn-gp3tuned-x64",
+      "runson-c8a-x64-4x8",
+      "runson-c8a-x64-8x16",
+      "runson-i7i-large",
+      "runson-i7i-xlarge",
+      "runson-i7i-2xlarge",
+      "runson-m8id-large",
+      "runson-m8id-2xlarge",
+      "runson-m9gd-large",
+      "runson-m9gd-2xlarge",
+      "runson-m9g-xlarge-tmpfs",
+      "runson-r9g-xlarge-tmpfs",
+      "runson-m9g-2xlarge-tmpfs",
+      "runson-c8g-large",
+      "runson-m9g-large",
+      "runson-m8azn-large",
+      "runson-m8azn-3xlarge",
+      "runson-m8a-2xlarge",
+      "runson-m8a-2xlarge-gp3tuned",
+      "runson-m8a-2xlarge-tmpfs",
+      "runson-c8a-large",
+      "runson-m8a-large",
+      "runson-r8a-large",
+      "runson-r8a-large-tmpfs",
+      "runson-r9g-large-tmpfs",
+      "runson-t8i-medium",
+      "runson-m8i-large",
+      "runson-m8i-flex-large",
+      "runson-m8i-xlarge",
+      "runson-m8i-flex-xlarge",
+      "runson-m8i-2xlarge",
+      "runson-m8i-flex-2xlarge"
+    ]
+  },
+  "runners": [
+    {
+      "id": "ours-x64",
+      "provider": "Runner pool",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 16,
+      "label": "ci-metal-4",
+      "tier": "standard",
+      "storage": "nvme"
+    }
+  ],
+  "results": [
+    {
+      "key": "ours-x64--1",
+      "runnerId": "ours-x64",
+      "provider": "Runner pool",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 2,
+      "jobSeconds": 185,
+      "workloadSeconds": 174,
+      "createdAt": "2026-11-08T18:56:57Z",
+      "startedAt": "2026-11-08T18:56:59Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 6,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 8,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 102,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 46,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 11,
+          "status": "success"
+        }
+      ],
+      "runnerName": "ci-metal-4-a1343fe0098c",
+      "runnerGroup": "default",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42512402004/job/128828445414",
+      "host": {
+        "collectedAt": "2026-11-08T18:57:04+00:00",
+        "arch": "x86_64",
+        "kernel": "6.8.0-147-generic",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 7313P 16-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 4,
+          "threadsPerCore": 1,
+          "maxMHz": null,
+          "virtualization": "kvm",
+          "hypervisor": "KVM"
+        },
+        "memoryGiB": 15.62,
+        "memory": {
+          "swapGiB": 0.0,
+          "availableGiB": 15.0,
+          "swapDevices": [],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Cloud Hypervisor",
+        "product": "cloud-hypervisor",
+        "storage": {
+          "workspace": {
+            "path": "/opt/runner/_work/ci-bench-a/ci-bench-a",
+            "source": "/dev/vda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,errors=remount-ro,commit=30",
+            "sizeGiB": 57.1,
+            "freeGiB": 52.7
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/vda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,errors=remount-ro,commit=30",
+            "sizeGiB": 57.1,
+            "freeGiB": 52.7
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/vda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,errors=remount-ro,commit=30",
+            "sizeGiB": 57.1,
+            "freeGiB": 52.7
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/vda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,errors=remount-ro,commit=30",
+            "sizeGiB": 57.1,
+            "freeGiB": 52.7
+          },
+          "dockerDriver": "overlayfs",
+          "devices": [
+            {
+              "name": "vda",
+              "type": "disk",
+              "sizeGiB": 60.0,
+              "model": null,
+              "rotational": true,
+              "transport": "virtio",
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "vda1",
+                  "type": "part",
+                  "sizeGiB": 59.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": "virtio",
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "vda14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": "virtio",
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "vda15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": true,
+                  "transport": "virtio",
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "vda16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": true,
+                  "transport": "virtio",
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            },
+            {
+              "name": "vdb",
+              "type": "disk",
+              "sizeGiB": 0.0,
+              "model": null,
+              "rotational": true,
+              "transport": "virtio",
+              "fstype": "iso9660",
+              "mountpoint": null
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS12876 Scaleway SAS",
+          "city": "Paris",
+          "region": "\u00cele-de-France",
+          "country": "FR"
+        },
+        "runner": {
+          "name": "ci-metal-4-a1343fe0098c",
+          "environment": "self-hosted",
+          "imageOS": null,
+          "imageVersion": null
+        }
+      }
+    }
+  ]
+}
