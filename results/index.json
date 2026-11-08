@@ -16,6 +16,20 @@
       "origin": "workflow_dispatch"
     },
     {
+      "path": "docker/2026-11-08-42514268584-1.json",
+      "suite": "docker",
+      "date": "2026-11-08",
+      "runId": 42514268584,
+      "attempt": 1,
+      "jobs": 1,
+      "succeeded": 1,
+      "runners": [
+        "ours-x64"
+      ],
+      "subset": true,
+      "origin": "workflow_dispatch"
+    },
+    {
       "path": "rust/2026-11-08-42513982888-1.json",
       "suite": "rust",
       "date": "2026-11-08",
