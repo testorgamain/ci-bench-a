@@ -1,0 +1,1101 @@
+{
+  "schemaVersion": 1,
+  "suite": "rust",
+  "workload": {
+    "name": "Rust: spotify-player",
+    "description": "Cold build of aome510/spotify-player, the project Namespace uses for its own Rust caching benchmark: checkout, apt dependencies, toolchain install, cargo fmt, cargo test, and two cargo clippy passes. No cache.",
+    "repository": "https://github.com/aome510/spotify-player",
+    "ref": "7dc9d17a7bf5671eb6129fdf9127729f659637fc",
+    "toolchain": "rust 1.98.1"
+  },
+  "run": {
+    "id": 42508193189,
+    "attempt": 1,
+    "date": "2026-11-08",
+    "startedAt": "2026-11-08T18:05:17Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189",
+    "sha": "4cb57db2b3d4ba6a8e2f7f7380c1b37afe5a6b1e",
+    "event": "workflow_dispatch",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "workflow_dispatch",
+    "source": "inputs",
+    "origin": {
+      "event": "workflow_dispatch",
+      "source": "inputs",
+      "runId": 42508193189
+    },
+    "runners": "github-x64",
+    "arch": "all",
+    "iterations": 5,
+    "defaultRunners": 95,
+    "subset": true,
+    "missingDefaultRunners": [
+      "github-x64-8x32",
+      "github-x64-2x8",
+      "github-arm64",
+      "github-arm64-2x8",
+      "runson-m8azn-x64",
+      "runson-m8a-x64",
+      "runson-m8id-x64",
+      "runson-r8a-tmpfs-x64",
+      "runson-r8a-2xlarge-tmpfs-x64",
+      "runson-m9g-arm64",
+      "runson-m9gd-arm64",
+      "runson-c8g-arm64-4x8",
+      "runson-c8g-arm64-8x16",
+      "runson-m9g-arm64-8x32",
+      "blacksmith-x64",
+      "blacksmith-x64-8x32",
+      "blacksmith-x64-2x8",
+      "blacksmith-arm64",
+      "blacksmith-arm64-8x32",
+      "blacksmith-arm64-2x6",
+      "namespace-x64",
+      "namespace-x64-4x8",
+      "namespace-x64-8x16",
+      "namespace-x64-8x32",
+      "namespace-x64-2x8",
+      "namespace-arm64",
+      "namespace-arm64-4x8",
+      "namespace-arm64-apple",
+      "namespace-arm64-8x16",
+      "namespace-arm64-8x32",
+      "namespace-arm64-2x8",
+      "namespace-arm64-apple-2x8",
+      "warpbuild-x64",
+      "warpbuild-x64-8x32",
+      "warpbuild-x64-2x",
+      "warpbuild-arm64",
+      "warpbuild-arm64-xfast",
+      "warpbuild-arm64-xfast-12x",
+      "warpbuild-arm64-8x32",
+      "warpbuild-arm64-2x",
+      "ubicloud-x64",
+      "ubicloud-premium-x64",
+      "ubicloud-x64-8x32",
+      "ubicloud-premium-x64-8x32",
+      "ubicloud-x64-2",
+      "ubicloud-premium-x64-2",
+      "ubicloud-arm64",
+      "ubicloud-arm64-8x32",
+      "ubicloud-arm64-2",
+      "avrea-x64",
+      "avrea-x64-8x32",
+      "avrea-x64-2",
+      "avrea-arm64",
+      "avrea-arm64-8x32",
+      "avrea-arm64-2",
+      "codebuild-x64",
+      "codebuild-x64-8x16",
+      "codebuild-x64-2x3",
+      "boat-x64-2x4",
+      "boat-x64",
+      "boat-x64-8x16",
+      "runson-m8azn-gp3tuned-x64",
+      "runson-c8a-x64-4x8",
+      "runson-c8a-x64-8x16",
+      "runson-i7i-large",
+      "runson-i7i-xlarge",
+      "runson-i7i-2xlarge",
+      "runson-m8id-large",
+      "runson-m8id-2xlarge",
+      "runson-m9gd-large",
+      "runson-m9gd-2xlarge",
+      "runson-m9g-xlarge-tmpfs",
+      "runson-r9g-xlarge-tmpfs",
+      "runson-m9g-2xlarge-tmpfs",
+      "runson-c8g-large",
+      "runson-m9g-large",
+      "runson-m8azn-large",
+      "runson-m8azn-3xlarge",
+      "runson-m8a-2xlarge",
+      "runson-m8a-2xlarge-gp3tuned",
+      "runson-m8a-2xlarge-tmpfs",
+      "runson-c8a-large",
+      "runson-m8a-large",
+      "runson-r8a-large",
+      "runson-r8a-large-tmpfs",
+      "runson-r9g-large-tmpfs",
+      "runson-t8i-medium",
+      "runson-m8i-large",
+      "runson-m8i-flex-large",
+      "runson-m8i-xlarge",
+      "runson-m8i-flex-xlarge",
+      "runson-m8i-2xlarge",
+      "runson-m8i-flex-2xlarge",
+      "ours-x64"
+    ]
+  },
+  "runners": [
+    {
+      "id": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 16,
+      "label": "ubuntu-24.04",
+      "tier": "standard",
+      "storage": "network",
+      "note": "Standard 4 vCPU runner GitHub gives public repositories."
+    }
+  ],
+  "results": [
+    {
+      "key": "github-x64--1",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 3,
+      "jobSeconds": 257,
+      "workloadSeconds": 247,
+      "createdAt": "2026-11-08T18:05:26Z",
+      "startedAt": "2026-11-08T18:05:29Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 11,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 9,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 144,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 67,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 14,
+          "status": "success"
+        }
+      ],
+      "runnerName": "GitHub Actions 1000000006",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189/job/128815346635",
+      "host": {
+        "collectedAt": "2026-11-08T18:05:33+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 7763 64-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": null,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.62,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "sda",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "Virtual Disk",
+              "rotational": true,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "sda1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "sda14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "sda15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "sda16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "San Jose",
+          "region": "California",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000006",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      }
+    },
+    {
+      "key": "github-x64--2",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 2,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 2,
+      "jobSeconds": 248,
+      "workloadSeconds": 241,
+      "createdAt": "2026-11-08T18:05:26Z",
+      "startedAt": "2026-11-08T18:05:28Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 9,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 9,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 140,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 69,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 13,
+          "status": "success"
+        }
+      ],
+      "runnerName": "GitHub Actions 1000000007",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189/job/128815346640",
+      "host": {
+        "collectedAt": "2026-11-08T18:05:32+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 7763 64-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": null,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.64,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "sda",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "Virtual Disk",
+              "rotational": true,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "sda1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "sda14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "sda15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "sda16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "Dulles Town Center",
+          "region": "Virginia",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000007",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      }
+    },
+    {
+      "key": "github-x64--3",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 3,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 5,
+      "jobSeconds": 173,
+      "workloadSeconds": 165,
+      "createdAt": "2026-11-08T18:05:26Z",
+      "startedAt": "2026-11-08T18:05:31Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 10,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 7,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 97,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 42,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 9,
+          "status": "success"
+        }
+      ],
+      "runnerName": "GitHub Actions 1000000009",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189/job/128815346738",
+      "host": {
+        "collectedAt": "2026-11-08T18:05:34+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 9V45 96-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": null,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.71,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "nvme0n1",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "MSFT NVMe Accelerator v1.0",
+              "rotational": false,
+              "transport": "nvme",
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "nvme0n1p1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "nvme0n1p14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "nvme0n1p15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "nvme0n1p16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000009",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      }
+    },
+    {
+      "key": "github-x64--4",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 4,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 2,
+      "jobSeconds": 197,
+      "workloadSeconds": 183,
+      "createdAt": "2026-11-08T18:05:26Z",
+      "startedAt": "2026-11-08T18:05:28Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 17,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 8,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 102,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 45,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 10,
+          "status": "success"
+        }
+      ],
+      "runnerName": "GitHub Actions 1000000008",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189/job/128815346700",
+      "host": {
+        "collectedAt": "2026-11-08T18:05:39+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "Intel(R) Xeon(R) 6973P-C",
+          "vendor": "GenuineIntel",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": 2600.0,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.66,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "nvme0n1",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "MSFT NVMe Accelerator v1.0",
+              "rotational": false,
+              "transport": "nvme",
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "nvme0n1p1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "nvme0n1p14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "nvme0n1p15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "nvme0n1p16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "Des Moines",
+          "region": "Iowa",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000008",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      }
+    },
+    {
+      "key": "github-x64--5",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 5,
+      "status": "success",
+      "failedAt": null,
+      "queueSeconds": 2,
+      "jobSeconds": 230,
+      "workloadSeconds": 216,
+      "createdAt": "2026-11-08T18:05:26Z",
+      "startedAt": "2026-11-08T18:05:28Z",
+      "phases": [
+        {
+          "name": "checkout",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "system packages",
+          "seconds": 17,
+          "status": "success"
+        },
+        {
+          "name": "toolchain",
+          "seconds": 11,
+          "status": "success"
+        },
+        {
+          "name": "cargo fmt",
+          "seconds": 0,
+          "status": "success"
+        },
+        {
+          "name": "cargo test",
+          "seconds": 121,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy",
+          "seconds": 54,
+          "status": "success"
+        },
+        {
+          "name": "cargo clippy (no features)",
+          "seconds": 12,
+          "status": "success"
+        }
+      ],
+      "runnerName": "GitHub Actions 1000000005",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42508193189/job/128815346619",
+      "host": {
+        "collectedAt": "2026-11-08T18:05:38+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "INTEL(R) XEON(R) PLATINUM 8573C",
+          "vendor": "GenuineIntel",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": 2300.0,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.63,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/nvme0n1p1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "nvme0n1",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "MSFT NVMe Accelerator v1.0",
+              "rotational": false,
+              "transport": "nvme",
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "nvme0n1p1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "nvme0n1p14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "nvme0n1p15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "nvme0n1p16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": false,
+                  "transport": "nvme",
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "Des Moines",
+          "region": "Iowa",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000005",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      }
+    }
+  ]
+}
