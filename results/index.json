@@ -2,6 +2,20 @@
   "schemaVersion": 1,
   "files": [
     {
+      "path": "rust/2026-11-09-42569899281-1.json",
+      "suite": "rust",
+      "date": "2026-11-09",
+      "runId": 42569899281,
+      "attempt": 1,
+      "jobs": 1,
+      "succeeded": 1,
+      "runners": [
+        "styne-x64-32"
+      ],
+      "subset": true,
+      "origin": "workflow_dispatch"
+    },
+    {
       "path": "node/2026-11-09-42569837791-1.json",
       "suite": "node",
       "date": "2026-11-09",
