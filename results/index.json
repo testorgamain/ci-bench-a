@@ -2,6 +2,20 @@
   "schemaVersion": 1,
   "files": [
     {
+      "path": "node/2026-11-09-42588445296-1.json",
+      "suite": "node",
+      "date": "2026-11-09",
+      "runId": 42588445296,
+      "attempt": 1,
+      "jobs": 1,
+      "succeeded": 1,
+      "runners": [
+        "styne-x64-32"
+      ],
+      "subset": true,
+      "origin": "workflow_dispatch"
+    },
+    {
       "path": "hardware/2026-11-09-42586181968-1.json",
       "suite": "hardware",
       "date": "2026-11-09",
