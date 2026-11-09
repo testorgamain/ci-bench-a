@@ -3265,6 +3265,25 @@
       "cacheActions": [
         "actions/cache"
       ]
+    },
+    {
+      "id": "styne-x64",
+      "provider": "Styne Run",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 8,
+      "label": "styne-4x8",
+      "tier": "standard",
+      "storage": "nvme",
+      "suites": [
+        "rust",
+        "node",
+        "docker",
+        "cache"
+      ],
+      "cacheActions": [
+        "actions/cache"
+      ]
     }
   ]
 }
