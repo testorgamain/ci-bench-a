@@ -2,6 +2,20 @@
   "schemaVersion": 1,
   "files": [
     {
+      "path": "node/2026-11-09-42553863851-1.json",
+      "suite": "node",
+      "date": "2026-11-09",
+      "runId": 42553863851,
+      "attempt": 1,
+      "jobs": 1,
+      "succeeded": 0,
+      "runners": [
+        "styne-x64"
+      ],
+      "subset": true,
+      "origin": "workflow_dispatch"
+    },
+    {
       "path": "docker/2026-11-09-42547998041-1.json",
       "suite": "docker",
       "date": "2026-11-09",
