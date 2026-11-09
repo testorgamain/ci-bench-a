@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "suite": "node",
+  "workload": {
+    "name": "TypeScript: opencode",
+    "description": "Cold clone, bun install and typecheck of anomalyco/opencode, at the commit and Bun version ComputeSDK's DAX sandbox benchmark uses. Unlike DAX, typecheck runs `turbo typecheck --concurrency=4` on every runner, whatever its size: turbo's default parallelism needs more than 16 GB and gets OOM-killed on runners without swap. Totals are therefore not directly comparable with DAX. Turbo's local and remote caches are off (`--cache=local:,remote:`), so a runner with a Turborepo remote cache still typechecks every package.",
+    "repository": "https://github.com/anomalyco/opencode",
+    "ref": "08fb47373509ba64b13441061314eeacf4264f51",
+    "toolchain": "bun 1.3.14, node-gyp 12.4.0 on PATH (native modules built on every runner)",
+    "reference": "https://www.computesdk.com/benchmarks/sandboxes/dax",
+    "typecheck": "bun turbo typecheck --concurrency=4 --cache=local:,remote:"
+  },
+  "run": {
+    "id": 42554160541,
+    "attempt": 1,
+    "date": "2026-11-09",
+    "startedAt": "2026-11-09T03:02:30Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/42554160541",
+    "sha": "55d7321850e63849e522d40748871d110592ea36",
+    "event": "workflow_dispatch",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "workflow_dispatch",
+    "source": "inputs",
+    "origin": {
+      "event": "workflow_dispatch",
+      "source": "inputs",
+      "runId": 42554160541
+    },
+    "runners": "styne-x64",
+    "arch": "all",
+    "iterations": 1,
+    "defaultRunners": 98,
+    "subset": true,
+    "missingDefaultRunners": [
+      "github-x64",
+      "github-x64-8x32",
+      "github-x64-2x8",
+      "github-arm64",
+      "github-arm64-2x8",
+      "runson-m8azn-x64",
+      "runson-m8a-x64",
+      "runson-m8id-x64",
+      "runson-r8a-tmpfs-x64",
+      "runson-r8a-2xlarge-tmpfs-x64",
+      "runson-m9g-arm64",
+      "runson-m9gd-arm64",
+      "runson-c8g-arm64-4x8",
+      "runson-c8g-arm64-8x16",
+      "runson-m9g-arm64-8x32",
+      "blacksmith-x64",
+      "blacksmith-x64-8x32",
+      "blacksmith-x64-2x8",
+      "blacksmith-arm64",
+      "blacksmith-arm64-8x32",
+      "blacksmith-arm64-2x6",
+      "namespace-x64",
+      "namespace-x64-4x8",
+      "namespace-x64-8x16",
+      "namespace-x64-8x32",
+      "namespace-x64-2x8",
+      "namespace-arm64",
+      "namespace-arm64-4x8",
+      "namespace-arm64-apple",
+      "namespace-arm64-8x16",
+      "namespace-arm64-8x32",
+      "namespace-arm64-2x8",
+      "namespace-arm64-apple-2x8",
+      "warpbuild-x64",
+      "warpbuild-x64-8x32",
+      "warpbuild-x64-2x",
+      "warpbuild-arm64",
+      "warpbuild-arm64-xfast",
+      "warpbuild-arm64-xfast-12x",
+      "warpbuild-arm64-8x32",
+      "warpbuild-arm64-2x",
+      "ubicloud-x64",
+      "ubicloud-premium-x64",
+      "ubicloud-x64-8x32",
+      "ubicloud-premium-x64-8x32",
+      "ubicloud-x64-2",
+      "ubicloud-premium-x64-2",
+      "ubicloud-arm64",
+      "ubicloud-arm64-8x32",
+      "ubicloud-arm64-2",
+      "avrea-x64",
+      "avrea-x64-8x32",
+      "avrea-x64-2",
+      "avrea-arm64",
+      "avrea-arm64-8x32",
+      "avrea-arm64-2",
+      "codebuild-x64",
+      "codebuild-x64-8x16",
+      "codebuild-x64-2x3",
+      "boat-x64-2x4",
+      "boat-x64",
+      "boat-x64-8x16",
+      "runson-m8azn-gp3tuned-x64",
+      "runson-c8a-x64-4x8",
+      "runson-c8a-x64-8x16",
+      "runson-i7i-large",
+      "runson-i7i-xlarge",
+      "runson-i7i-2xlarge",
+      "runson-m8id-large",
+      "runson-m8id-2xlarge",
+      "runson-m9gd-large",
+      "runson-m9gd-2xlarge",
+      "runson-m9g-xlarge-tmpfs",
+      "runson-r9g-xlarge-tmpfs",
+      "runson-m9g-2xlarge-tmpfs",
+      "runson-c8g-large",
+      "runson-m9g-large",
+      "runson-m8azn-large",
+      "runson-m8azn-3xlarge",
+      "runson-m8a-2xlarge",
+      "runson-m8a-2xlarge-gp3tuned",
+      "runson-m8a-2xlarge-tmpfs",
+      "runson-c8a-large",
+      "runson-m8a-large",
+      "runson-r8a-large",
+      "runson-r8a-large-tmpfs",
+      "runson-r9g-large-tmpfs",
+      "runson-t8i-medium",
+      "runson-m8i-large",
+      "runson-m8i-flex-large",
+      "runson-m8i-xlarge",
+      "runson-m8i-flex-xlarge",
+      "runson-m8i-2xlarge",
+      "runson-m8i-flex-2xlarge",
+      "ours-x64",
+      "styne-2x4",
+      "styne-x64-16"
+    ]
+  },
+  "runners": [
+    {
+      "id": "styne-x64",
+      "provider": "Styne Run",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 8,
+      "label": "styne-4x8",
+      "tier": "standard",
+      "storage": "nvme"
+    }
+  ],
+  "results": [
+    {
+      "key": "styne-x64--1",
+      "runnerId": "styne-x64",
+      "provider": "Styne Run",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "failure",
+      "failedAt": "typecheck",
+      "queueSeconds": 1,
+      "jobSeconds": 72,
+      "workloadSeconds": null,
+      "createdAt": "2026-11-09T03:02:42Z",
+      "startedAt": "2026-11-09T03:02:43Z",
+      "phases": [
+        {
+          "name": "toolchain",
+          "seconds": 1,
+          "status": "success"
+        },
+        {
+          "name": "clone",
+          "seconds": 4,
+          "status": "success"
+        },
+        {
+          "name": "bun install",
+          "seconds": 15,
+          "status": "success"
+        },
+        {
+          "name": "typecheck",
+          "seconds": 38,
+          "status": "failure"
+        }
+      ],
+      "runnerName": "styne-4x8-cbeaf5250e66",
+      "runnerGroup": "default",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/42554160541/job/128956099137",
+      "host": {
+        "collectedAt": "2026-11-09T03:02:48+00:00",
+        "arch": "x86_64",
+        "kernel": "6.12.8+",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "AMD EPYC 9354P 32-Core Processor",
+          "vendor": "AuthenticAMD",
+          "logicalCpus": 4,
+          "threadsPerCore": 1,
+          "maxMHz": null,
+          "virtualization": null,
+          "hypervisor": "KVM"
+        },
+        "memoryGiB": 7.77,
+        "memory": {
+          "swapGiB": 0.0,
+          "availableGiB": 7.2,
+          "swapDevices": [],
+          "overcommit": 0,
+          "swappiness": 100,
+          "zram": [
+            "zram0"
+          ]
+        },
+        "manufacturer": null,
+        "product": null,
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/_work/ci-bench-a/ci-bench-a",
+            "source": "/dev/vda",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,noatime,nobarrier",
+            "sizeGiB": 31.5,
+            "freeGiB": 28.9
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/vda",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,noatime,nobarrier",
+            "sizeGiB": 31.5,
+            "freeGiB": 28.9
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/vda",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,noatime,nobarrier",
+            "sizeGiB": 31.5,
+            "freeGiB": 28.9
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/vda[/var/lib/docker]",
+            "target": "/var/lib/docker",
+            "fstype": "ext4",
+            "options": "rw,noatime,nobarrier",
+            "sizeGiB": 31.5,
+            "freeGiB": 28.9
+          },
+          "dockerDriver": "overlayfs",
+          "devices": [
+            {
+              "name": "nullb0",
+              "type": "disk",
+              "sizeGiB": 250.0,
+              "model": null,
+              "rotational": false,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null
+            },
+            {
+              "name": "zram0",
+              "type": "disk",
+              "sizeGiB": 7.8,
+              "model": null,
+              "rotational": false,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null
+            },
+            {
+              "name": "vda",
+              "type": "disk",
+              "sizeGiB": 32.0,
+              "model": null,
+              "rotational": true,
+              "transport": "virtio",
+              "fstype": null,
+              "mountpoint": "/"
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS20326 TeraSwitch Networks Inc.",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE"
+        },
+        "runner": {
+          "name": "styne-4x8-cbeaf5250e66",
+          "environment": "self-hosted",
+          "imageOS": null,
+          "imageVersion": null
+        }
+      },
+      "metrics": {
+        "node": {
+          "installAttempts": 1,
+          "typecheckConcurrency": 4,
+          "typecheckPeakUsedMiB": 7616
+        }
+      },
+      "annotations": {
+        "errors": [
+          "opencode#typecheck: command (/home/runner/_work/ci-bench-a/ci-bench-a/work/packages/opencode) /home/runner/_work/_temp/bun/bin/bun run typecheck exited (1)"
+        ]
+      },
+      "logTail": [
+        "    at async handleMainPromise (node:internal/modules/run_main:106:12) {",
+        "  status: null,",
+        "  signal: 'SIGKILL',",
+        "  output: [ null, null, null ],",
+        "  pid: 1926,",
+        "  stdout: null,",
+        "  stderr: null",
+        "}",
+        "Node.js v18.19.1",
+        "error: script \"typecheck\" exited with code 1",
+        "##[group]@opencode-ai/console-app:typecheck",
+        "cache bypass, force executing c3e71219d4e5cad8",
+        "##[endgroup]",
+        "##[group]@opencode-ai/server:typecheck",
+        "cache bypass, force executing a2610f20ade21bc2",
+        "##[endgroup]",
+        "##[group]@opencode-ai/sdk-next:typecheck",
+        "cache bypass, force executing c2e8aa1258f47185",
+        "##[endgroup]",
+        "##[group]@opencode-ai/tui:typecheck",
+        "cache bypass, force executing f8bcdb739b90c436",
+        "$ tsgo --noEmit",
+        "##[endgroup]",
+        "##[group]@opencode-ai/cli:typecheck",
+        "cache bypass, force executing 1d197e84269d0411",
+        "$ tsgo --noEmit",
+        "##[endgroup]",
+        "##[group]@opencode-ai/llm:typecheck",
+        "cache bypass, force executing 12a9e45b1db511f1",
+        "$ tsgo --noEmit",
+        "##[endgroup]",
+        "##[error]opencode#typecheck: command (/home/runner/_work/ci-bench-a/ci-bench-a/work/packages/opencode) /home/runner/_work/_temp/bun/bin/bun run typecheck exited (1)",
+        " ERROR  opencode#typecheck: command (/home/runner/_work/ci-bench-a/ci-bench-a/work/packages/opencode) /home/runner/_work/_temp/bun/bin/bun run typecheck exited (1)",
+        " Tasks:    23 successful, 30 total",
+        "Cached:    0 cached, 30 total",
+        "  Time:    37.288s",
+        "Failed:    opencode#typecheck",
+        " ERROR  run failed: command  exited (1)",
+        "error: \"turbo\" exited with code 1",
+        "##[error]Process completed with exit code 1."
+      ]
+    }
+  ]
+}
