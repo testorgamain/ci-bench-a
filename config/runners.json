@@ -3252,7 +3252,7 @@
       "arch": "x64",
       "vcpu": 2,
       "ramGiB": 4,
-      "label": "styne-2x4",
+      "label": "tr-2x4",
       "tier": "standard",
       "storage": "nvme",
       "suites": [
@@ -3272,7 +3272,7 @@
       "arch": "x64",
       "vcpu": 4,
       "ramGiB": 8,
-      "label": "styne-4x8",
+      "label": "tr-4x8",
       "tier": "standard",
       "storage": "nvme",
       "suites": [
@@ -3291,7 +3291,7 @@
       "arch": "x64",
       "vcpu": 4,
       "ramGiB": 16,
-      "label": "styne-4x16",
+      "label": "tr-4x16",
       "tier": "standard",
       "storage": "nvme",
       "suites": [
@@ -3310,7 +3310,7 @@
       "arch": "x64",
       "vcpu": 8,
       "ramGiB": 32,
-      "label": "styne-8x32",
+      "label": "tr-8x32",
       "tier": "standard",
       "storage": "nvme",
       "suites": [
