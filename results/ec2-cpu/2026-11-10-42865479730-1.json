@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": 1,
+  "suite": "ec2-cpu",
+  "workload": {
+    "name": "EC2 CPU",
+    "description": "The hardware suite's CPU groups only (sysbench single and multi-thread, 7-Zip, PassMark PerformanceTest CPU tests) on one instance per EC2 type, at the smallest 2 vCPU size (.large, or .medium for burstable t types), spot, EBS or local NVMe as the type comes. It measures EC2 CPU per instance type, not a CI runner, so its runners never join a race suite. It is the open replacement for the earlier private EC2 CPU sweep, and covers the same instance types. PassMark 'CPU Single Threaded' (metrics.cpu.passmarkSingle, million operations per second) is the figure that sweep recorded as 'speed': same test, same unit. Settings differ: that sweep ran pt_linux with 1 process, 5 iterations and short test duration; this suite runs it with one process per vCPU, 2 iterations and medium duration (the process count only affects the multi-threaded tests and CPU Mark). The earlier private sweep ran V11 (11.0.1002) on x64 and V10.2 (10.2.1003) on Graviton; the harness's single-threaded figures match it within about 1% on both.",
+    "groups": [
+      "cpu",
+      "passmark"
+    ],
+    "passmark": "PassMark PerformanceTest Linux V11 (latest V11 build from passmark.com), pt_linux -r 1 -i 2 -p <vCPUs> -d 2",
+    "metric": "metrics.cpu.passmarkSingle"
+  },
+  "run": {
+    "id": 42865479730,
+    "attempt": 1,
+    "date": "2026-11-10",
+    "startedAt": "2026-11-10T17:29:29Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/42865479730",
+    "sha": "f13d624bff7fa1fa8ac87876d16f87f2e9e44792",
+    "event": "schedule",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "schedule",
+    "source": "schedule",
+    "origin": {
+      "event": "schedule",
+      "source": "schedule",
+      "runId": 42865479730
+    },
+    "runners": "default",
+    "arch": "all",
+    "iterations": 1,
+    "defaultRunners": 50,
+    "subset": false,
+    "missingDefaultRunners": []
+  },
+  "runners": [
+    {
+      "id": "ec2-c6a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c6a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c6a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 3rd gen (Milan), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c6i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c6i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 3rd gen (Ice Lake), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c6id.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c6id.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 3rd gen (Ice Lake), local NVMe, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c7a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c7a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 4th gen (Genoa), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c7i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c7i-flex.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c7i-flex.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids) Flex: full CPU most of the time, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c7i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c7i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-i7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=i7i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "i7i.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 5th gen (Emerald Rapids), local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-i7ie-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=i7ie.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "i7ie.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 5th gen (Emerald Rapids), local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m4-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m4.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m4.large",
+      "storage": "ebs",
+      "note": "Intel Xeon E5 v4/v3 (Broadwell/Haswell), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m5a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m5a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m5a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 1st gen (Naples), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m5zn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m5zn.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m5zn.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 2nd gen (Cascade Lake), high frequency (up to 4.5 GHz), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 3rd gen (Milan), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 3rd gen (Ice Lake), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6id.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6id.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 3rd gen (Ice Lake), local NVMe, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6idn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6idn.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6idn.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 3rd gen (Ice Lake), local NVMe, network optimized, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m7a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m7a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 4th gen (Genoa), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m7i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m7i-flex.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m7i-flex.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids) Flex: full CPU most of the time, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m7i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m7i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 5th gen (Turin), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m8azn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8azn.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8azn.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 5th gen (Turin), high frequency (up to 5 GHz), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8i-flex.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8i-flex.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids) Flex: full CPU most of the time, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids), 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r6i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r6i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 3rd gen (Ice Lake), 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r6id.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r6id.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 3rd gen (Ice Lake), local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r6idn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r6idn.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r6idn.large",
+      "storage": "nvme",
+      "note": "Intel Xeon 3rd gen (Ice Lake), local NVMe, network optimized, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r7a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r7a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC 4th gen (Genoa), 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r7i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r7i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids), 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r7iz-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r7iz.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r7iz.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 4th gen (Sapphire Rapids), high frequency (up to 3.9 GHz), 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r8i-flex.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r8i-flex.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids) Flex: full CPU most of the time, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r8i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r8i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids), 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-t3-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=t3.medium,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "t3.medium",
+      "storage": "ebs",
+      "note": "Intel Xeon Platinum (Skylake/Cascade Lake), burstable (CPU credits), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-t3a-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=t3a.medium,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "t3a.medium",
+      "storage": "ebs",
+      "note": "AMD EPYC 1st gen (Naples), burstable (CPU credits), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-t8i-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=t8i.medium,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "t8i.medium",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids), burstable (CPU credits), 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-z1d-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=z1d.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "z1d.large",
+      "storage": "nvme",
+      "note": "Intel Xeon Platinum 8151 (Skylake), high frequency (up to 4 GHz), local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c6g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c6g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c6g.large",
+      "storage": "ebs",
+      "note": "Graviton2, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c6gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c6gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c6gd.large",
+      "storage": "nvme",
+      "note": "Graviton2, local NVMe, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c7g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c7g.large",
+      "storage": "ebs",
+      "note": "Graviton3, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c7gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c7gd.large",
+      "storage": "nvme",
+      "note": "Graviton3, local NVMe, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-c8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c8g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c8g.large",
+      "storage": "ebs",
+      "note": "Graviton4, 2 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-i8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=i8g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "i8g.large",
+      "storage": "nvme",
+      "note": "Graviton4, local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6g.large",
+      "storage": "ebs",
+      "note": "Graviton2, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m6gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m6gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m6gd.large",
+      "storage": "nvme",
+      "note": "Graviton2, local NVMe, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m7g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m7g.large",
+      "storage": "ebs",
+      "note": "Graviton3, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m7gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m7gd.large",
+      "storage": "nvme",
+      "note": "Graviton3, local NVMe, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8g.large",
+      "storage": "ebs",
+      "note": "Graviton4, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-m9g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m9g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m9g.large",
+      "storage": "ebs",
+      "note": "Graviton5, 4 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r7g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "r7g.large",
+      "storage": "ebs",
+      "note": "Graviton3, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r7gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "r7gd.large",
+      "storage": "nvme",
+      "note": "Graviton3, local NVMe, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-r8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r8g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "r8g.large",
+      "storage": "ebs",
+      "note": "Graviton4, 8 GB per vCPU. EC2 CPU sweep only."
+    },
+    {
+      "id": "ec2-t4g-medium",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=t4g.medium,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "t4g.medium",
+      "storage": "ebs",
+      "note": "Graviton2, burstable (CPU credits), 2 GB per vCPU. EC2 CPU sweep only."
+    }
+  ],
+  "results": [
+    {
+      "key": "ec2-c6a-large--1",
+      "runnerId": "ec2-c6a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c6i-large--1",
+      "runnerId": "ec2-c6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c6id-large--1",
+      "runnerId": "ec2-c6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c7a-large--1",
+      "runnerId": "ec2-c7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c7i-flex-large--1",
+      "runnerId": "ec2-c7i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c7i-large--1",
+      "runnerId": "ec2-c7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-i7i-large--1",
+      "runnerId": "ec2-i7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-i7ie-large--1",
+      "runnerId": "ec2-i7ie-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m4-large--1",
+      "runnerId": "ec2-m4-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m5a-large--1",
+      "runnerId": "ec2-m5a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m5zn-large--1",
+      "runnerId": "ec2-m5zn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6a-large--1",
+      "runnerId": "ec2-m6a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6i-large--1",
+      "runnerId": "ec2-m6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6id-large--1",
+      "runnerId": "ec2-m6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6idn-large--1",
+      "runnerId": "ec2-m6idn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m7a-large--1",
+      "runnerId": "ec2-m7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m7i-flex-large--1",
+      "runnerId": "ec2-m7i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m7i-large--1",
+      "runnerId": "ec2-m7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m8a-large--1",
+      "runnerId": "ec2-m8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m8azn-large--1",
+      "runnerId": "ec2-m8azn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m8i-flex-large--1",
+      "runnerId": "ec2-m8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m8i-large--1",
+      "runnerId": "ec2-m8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r6i-large--1",
+      "runnerId": "ec2-r6i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r6id-large--1",
+      "runnerId": "ec2-r6id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r6idn-large--1",
+      "runnerId": "ec2-r6idn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r7a-large--1",
+      "runnerId": "ec2-r7a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r7i-large--1",
+      "runnerId": "ec2-r7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r7iz-large--1",
+      "runnerId": "ec2-r7iz-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r8i-flex-large--1",
+      "runnerId": "ec2-r8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r8i-large--1",
+      "runnerId": "ec2-r8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-t3-medium--1",
+      "runnerId": "ec2-t3-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-t3a-medium--1",
+      "runnerId": "ec2-t3a-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-t8i-medium--1",
+      "runnerId": "ec2-t8i-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-z1d-large--1",
+      "runnerId": "ec2-z1d-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c6g-large--1",
+      "runnerId": "ec2-c6g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c6gd-large--1",
+      "runnerId": "ec2-c6gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c7g-large--1",
+      "runnerId": "ec2-c7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c7gd-large--1",
+      "runnerId": "ec2-c7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-c8g-large--1",
+      "runnerId": "ec2-c8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-i8g-large--1",
+      "runnerId": "ec2-i8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6g-large--1",
+      "runnerId": "ec2-m6g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m6gd-large--1",
+      "runnerId": "ec2-m6gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m7g-large--1",
+      "runnerId": "ec2-m7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m7gd-large--1",
+      "runnerId": "ec2-m7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m8g-large--1",
+      "runnerId": "ec2-m8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-m9g-large--1",
+      "runnerId": "ec2-m9g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r7g-large--1",
+      "runnerId": "ec2-r7g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r7gd-large--1",
+      "runnerId": "ec2-r7gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-r8g-large--1",
+      "runnerId": "ec2-r8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ec2-t4g-medium--1",
+      "runnerId": "ec2-t4g-medium",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    }
+  ]
+}
