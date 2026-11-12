@@ -1,0 +1,1023 @@
+{
+  "schemaVersion": 1,
+  "suite": "cpu-daily",
+  "workload": {
+    "name": "CPU daily",
+    "description": "PassMark PerformanceTest CPU tests, the hardware suite's passmark group only, every day on each provider's 2 vCPU runners and on the few runners at other sizes whose label continues a line of runs-on.com's CPU history. The figure it is for is PassMark 'CPU Single Threaded' (metrics.cpu.passmarkSingle): the test and settings of the hardware suite, so a runner's daily points and its hardware-suite points are one series.",
+    "groups": [
+      "passmark"
+    ],
+    "passmark": "PassMark PerformanceTest Linux V11 (latest V11 build from passmark.com), pt_linux -r 1 -i 2 -p <vCPUs> -d 2",
+    "metric": "metrics.cpu.passmarkSingle"
+  },
+  "run": {
+    "id": 43052420425,
+    "attempt": 1,
+    "date": "2026-11-11",
+    "startedAt": "2026-11-11T15:50:56Z",
+    "url": "https://github.com/testorgamain/ci-bench-a/actions/runs/43052420425",
+    "sha": "234491ed478be299e3bbb6181198c167c5e078a6",
+    "event": "schedule",
+    "repository": "testorgamain/ci-bench-a"
+  },
+  "selection": {
+    "event": "schedule",
+    "source": "schedule",
+    "origin": {
+      "event": "schedule",
+      "source": "schedule",
+      "runId": 43052420425
+    },
+    "runners": "default",
+    "arch": "all",
+    "iterations": 1,
+    "defaultRunners": 33,
+    "subset": false,
+    "missingDefaultRunners": []
+  },
+  "runners": [
+    {
+      "id": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 16,
+      "label": "ubuntu-24.04",
+      "tier": "standard",
+      "storage": "network",
+      "note": "Standard 4 vCPU runner GitHub gives public repositories."
+    },
+    {
+      "id": "github-x64-2x8",
+      "provider": "GitHub",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "github24-2cpu-x64",
+      "variant": "2-core",
+      "note": "GitHub 2-core larger runner (the size private repositories get as standard).",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "github-arm64-2x8",
+      "provider": "GitHub",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "github24-2cpu-arm64",
+      "variant": "2-core",
+      "note": "GitHub 2-core arm64 larger runner.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "blacksmith-x64-2x8",
+      "provider": "Blacksmith",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "blacksmith-2vcpu-ubuntu-2404",
+      "variant": "2 vCPU",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "blacksmith-arm64-2x6",
+      "provider": "Blacksmith",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 6,
+      "label": "blacksmith-2vcpu-ubuntu-2404-arm",
+      "variant": "2 vCPU",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "namespace-x64-2x8",
+      "provider": "Namespace",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "nscloud-ubuntu-24.04-amd64-2x8",
+      "variant": "2x8",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "namespace-arm64-2x8",
+      "provider": "Namespace",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "nscloud-ubuntu-24.04-arm64-2x8",
+      "variant": "2x8",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "namespace-arm64-apple-2x8",
+      "provider": "Namespace",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": [
+        "nscloud-ubuntu-24.04-arm64-2x8-with-features",
+        "namespace-features:linux-on-apple-silicon=true"
+      ],
+      "tier": "apple-silicon",
+      "variant": "Apple silicon",
+      "note": "Linux on Apple Silicon (early access; Apple M4 Pro or M5 Max hosts) at 2x8, billed at 7x the Linux rate: $0.042/min (overage rate). The label runs-on.com's CPU history sampled daily until 23 Sep 2026; the -with-features suffix keeps plain nscloud-ubuntu-24.04-arm64-2x8 jobs off these runners.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (SIGKILL, with no swap). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "warpbuild-x64-2x",
+      "provider": "Warpbuild",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "warp-ubuntu-2404-x64-2x",
+      "variant": "2x",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "warpbuild-arm64-2x",
+      "provider": "Warpbuild",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "warp-ubuntu-2404-arm64-2x",
+      "variant": "2x",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "ubicloud-x64-2",
+      "provider": "Ubicloud",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "ubicloud-standard-2-ubuntu-2404",
+      "tier": "standard",
+      "variant": "standard 2",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "ubicloud-premium-x64-2",
+      "provider": "Ubicloud",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "ubicloud-premium-2-ubuntu-2404",
+      "tier": "premium",
+      "variant": "premium 2",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "ubicloud-arm64-2",
+      "provider": "Ubicloud",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "ubicloud-standard-2-arm-ubuntu-2404",
+      "tier": "standard",
+      "variant": "standard 2",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "avrea-x64-2",
+      "provider": "Avrea",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "avrea-ubuntu-24.04-2-vcpu",
+      "variant": "2 vCPU",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "avrea-arm64-2",
+      "provider": "Avrea",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "avrea-ubuntu-24.04-arm-2-vcpu",
+      "variant": "2 vCPU",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "codebuild-x64",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "vcpu": 4,
+      "ramGiB": 8,
+      "label": "codebuild-benchmark-public-{run_id}-{run_attempt}-ubuntu-8.0-medium",
+      "note": "BUILD_GENERAL1_MEDIUM: 4 vCPU / 8 GB.",
+      "variant": "medium",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "codebuild-x64-8x16",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "vcpu": 8,
+      "ramGiB": 16,
+      "label": "codebuild-benchmark-public-{run_id}-{run_attempt}-ubuntu-8.0-large",
+      "variant": "large",
+      "note": "BUILD_GENERAL1_LARGE: 8 vCPU / 15 GB."
+    },
+    {
+      "id": "codebuild-x64-2x3",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 3,
+      "label": "codebuild-benchmark-public-{run_id}-{run_attempt}-ubuntu-8.0-small",
+      "variant": "small",
+      "note": "BUILD_GENERAL1_SMALL: 2 vCPU / 3 GB.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "boat-x64-2x4",
+      "provider": "boat",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "boat-small",
+      "note": "boat's small size: 2 vCPU / 4 GB, plus 5 GB of swap.",
+      "variant": "small",
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-i7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=i7i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "i7i.large",
+      "storage": "nvme"
+    },
+    {
+      "id": "runson-m8id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8id.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8id.large",
+      "storage": "nvme",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m9gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m9gd.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m9gd.large",
+      "storage": "nvme",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-c8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c8g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "c8g.large",
+      "storage": "ebs",
+      "note": "Graviton4, 2 GB per vCPU.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m9g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m9g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo",
+      "instanceType": "m9g.large",
+      "storage": "ebs",
+      "note": "Graviton, 4 GB per vCPU.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m8azn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8azn.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8azn.large",
+      "storage": "ebs",
+      "variant": "gp3 default",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-c8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=c8a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "c8a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC Turin, 2 GB per vCPU.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC Turin, 4 GB per vCPU.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-r8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r8a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "r8a.large",
+      "storage": "ebs",
+      "note": "AMD EPYC Turin, 8 GB per vCPU."
+    },
+    {
+      "id": "runson-r8a-large-tmpfs",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r8a.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo,extras=tmpfs",
+      "instanceType": "r8a.large",
+      "storage": "tmpfs",
+      "variant": "YOLO mode (tmpfs)",
+      "note": "The 2 vCPU tmpfs runner on x64: same AMD Turin CPU as runson-r8a-large, with /tmp, /home/runner and /var/lib/docker in memory (extras=tmpfs).",
+      "suiteSkips": {
+        "docker": "Not run: needs more than 16 GB of RAM with tmpfs, where Docker's data root lives in RAM; the 16 GB m9g.xlarge tmpfs runner was shut down mid-build, even with zram swap. The 32 GB tmpfs runners build it."
+      }
+    },
+    {
+      "id": "runson-r9g-large-tmpfs",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "vcpu": 2,
+      "ramGiB": 16,
+      "label": "runs-on={run_id},family=r9g.large,image=ubuntu26-full-arm64,ssh=false,retry=false,env=demo,extras=tmpfs",
+      "instanceType": "r9g.large",
+      "storage": "tmpfs",
+      "variant": "YOLO mode (tmpfs)",
+      "note": "The 2 vCPU tmpfs runner on arm64: Graviton5 with 8 GB per vCPU, /tmp, /home/runner and /var/lib/docker in memory (extras=tmpfs): the arm64 counterpart of runson-r8a-large-tmpfs.",
+      "suiteSkips": {
+        "docker": "Not run: needs more than 16 GB of RAM with tmpfs, where Docker's data root lives in RAM; the 16 GB m9g.xlarge tmpfs runner was shut down mid-build, even with zram swap. The 32 GB tmpfs runners build it."
+      }
+    },
+    {
+      "id": "runson-t8i-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 4,
+      "label": "runs-on={run_id},family=t8i.medium,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "t8i.medium",
+      "storage": "ebs",
+      "note": "Burstable Intel Xeon 6 (T8i, launched Sep 2026): the smallest size with 2 vCPU; runs on CPU credits.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8i.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8i.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 (Granite Rapids), 4 GB per vCPU.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    },
+    {
+      "id": "runson-m8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "vcpu": 2,
+      "ramGiB": 8,
+      "label": "runs-on={run_id},family=m8i-flex.large,image=ubuntu26-full-x64,ssh=false,retry=false,env=demo",
+      "instanceType": "m8i-flex.large",
+      "storage": "ebs",
+      "note": "Intel Xeon 6 Flex: m8i at a lower price, full CPU most of the time.",
+      "suiteNotes": {
+        "node": "8 GB is not enough for the opencode typecheck, even with turbo limited to 4 tasks: TypeScript processes are killed out of memory (exit 137). 16 GB passes."
+      },
+      "suiteSkips": {
+        "docker": "Not run: the PostHog Docker build needs more than 8 GB of memory; it ran out of memory on 8 GB runners."
+      }
+    }
+  ],
+  "results": [
+    {
+      "key": "github-x64--1",
+      "runnerId": "github-x64",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "failure",
+      "failedAt": "Install tools",
+      "queueSeconds": 3,
+      "jobSeconds": 1012,
+      "workloadSeconds": null,
+      "createdAt": "2026-11-11T15:51:06Z",
+      "startedAt": "2026-11-11T15:51:09Z",
+      "phases": [],
+      "runnerName": "GitHub Actions 1000000907",
+      "runnerGroup": "GitHub Actions",
+      "jobUrl": "https://github.com/testorgamain/ci-bench-a/actions/runs/43052420425/job/130632931591",
+      "host": {
+        "collectedAt": "2026-11-11T15:51:12+00:00",
+        "arch": "x86_64",
+        "kernel": "7.0.0-1017-azure",
+        "os": "Ubuntu 24.04.5 LTS",
+        "cpu": {
+          "model": "INTEL(R) XEON(R) PLATINUM 8573C",
+          "vendor": "GenuineIntel",
+          "logicalCpus": 4,
+          "threadsPerCore": 2,
+          "maxMHz": 2300.0,
+          "virtualization": "microsoft",
+          "hypervisor": "Microsoft"
+        },
+        "memoryGiB": 15.61,
+        "memory": {
+          "swapGiB": 3.0,
+          "availableGiB": 14.58,
+          "swapDevices": [
+            {
+              "kind": "file",
+              "sizeGiB": 3.0
+            }
+          ],
+          "overcommit": 0,
+          "swappiness": 60
+        },
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "storage": {
+          "workspace": {
+            "path": "/home/runner/work/ci-bench-a/ci-bench-a",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "tmp": {
+            "path": "/tmp",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "root": {
+            "path": "/",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "docker": {
+            "path": "/var/lib/docker",
+            "source": "/dev/sda1",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,discard,journal_async_commit,nobarrier,errors=remount-ro,commit=30,data=writeback",
+            "sizeGiB": 144.3,
+            "freeGiB": 85.6
+          },
+          "dockerDriver": "overlay2",
+          "devices": [
+            {
+              "name": "sda",
+              "type": "disk",
+              "sizeGiB": 150.0,
+              "model": "Virtual Disk",
+              "rotational": true,
+              "transport": null,
+              "fstype": null,
+              "mountpoint": null,
+              "children": [
+                {
+                  "name": "sda1",
+                  "type": "part",
+                  "sizeGiB": 149.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/"
+                },
+                {
+                  "name": "sda14",
+                  "type": "part",
+                  "sizeGiB": 0.0,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": null,
+                  "mountpoint": null
+                },
+                {
+                  "name": "sda15",
+                  "type": "part",
+                  "sizeGiB": 0.1,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "vfat",
+                  "mountpoint": "/boot/efi"
+                },
+                {
+                  "name": "sda16",
+                  "type": "part",
+                  "sizeGiB": 0.9,
+                  "model": null,
+                  "rotational": true,
+                  "transport": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/boot"
+                }
+              ]
+            }
+          ]
+        },
+        "ec2": null,
+        "runsOn": null,
+        "network": {
+          "org": "AS8075 Microsoft Corporation",
+          "city": "Chicago",
+          "region": "Illinois",
+          "country": "US"
+        },
+        "runner": {
+          "name": "GitHub Actions 1000000907",
+          "environment": "github-hosted",
+          "imageOS": "ubuntu24",
+          "imageVersion": "20261101.360.1"
+        }
+      },
+      "logTail": [
+        "cpu      INTEL(R) XEON(R) PLATINUM 8573C x4, 15.61 GiB",
+        "workspace ext4 on /dev/sda1 (85.6 GiB free of 144.3)",
+        "docker   ext4 on /dev/sda1 (85.6 GiB free)",
+        "##[end-action id=__self.__run_2;outcome=success;conclusion=success;duration_ms=729]",
+        "Run sudo apt-get update -qq",
+        "W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-updates/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-backports/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-security/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "W: Some index files failed to download. They have been ignored, or old ones used instead.",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/g/glusterfs/libgfxdr0_11.1-4ubuntu0.1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/g/glusterfs/libglusterfs0_11.1-4ubuntu0.1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/g/glusterfs/libgfrpc0_11.1-4ubuntu0.1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/g/glusterfs/libgfapi0_11.1-4ubuntu0.1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/libn/libnbd/libnbd0_1.20.0-1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/n/ndctl/libdaxctl1_77-2ubuntu2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/n/ndctl/libndctl6_77-2ubuntu2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/p/pmdk/libpmem1_1.13.1-1.1ubuntu2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/b/boost1.83/libboost-iostreams1.83.0_1.83.0-2.1ubuntu3.2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/b/boost1.83/libboost-thread1.83.0_1.83.0-2.1ubuntu3.2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/r/rdma-core/librdmacm1t64_50.0-2ubuntu0.2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/pool/main/c/ceph/librados2_19.2.3-0ubuntu0.24.04.3_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/p/pmdk/libpmemobj1_1.13.1-1.1ubuntu2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/pool/main/c/ceph/librbd1_19.2.3-0ubuntu0.24.04.3_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fio/fio_3.36-1ubuntu0.1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/l/luajit2/libluajit2-5.1-common_2.1-20230410-1build1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/l/luajit2/libluajit2-5.1-2_2.1-20230410-1build1_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/p/postgresql-common/postgresql-client_16%2b257build1.1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/s/sysbench/sysbench_1.0.20%2bds-6build2_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'",
+        "E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?",
+        "##[error]Process completed with exit code 100."
+      ]
+    },
+    {
+      "key": "github-x64-2x8--1",
+      "runnerId": "github-x64-2x8",
+      "provider": "GitHub",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "github-arm64-2x8--1",
+      "runnerId": "github-arm64-2x8",
+      "provider": "GitHub",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "blacksmith-x64-2x8--1",
+      "runnerId": "blacksmith-x64-2x8",
+      "provider": "Blacksmith",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "blacksmith-arm64-2x6--1",
+      "runnerId": "blacksmith-arm64-2x6",
+      "provider": "Blacksmith",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "namespace-x64-2x8--1",
+      "runnerId": "namespace-x64-2x8",
+      "provider": "Namespace",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "namespace-arm64-2x8--1",
+      "runnerId": "namespace-arm64-2x8",
+      "provider": "Namespace",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "namespace-arm64-apple-2x8--1",
+      "runnerId": "namespace-arm64-apple-2x8",
+      "provider": "Namespace",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "warpbuild-x64-2x--1",
+      "runnerId": "warpbuild-x64-2x",
+      "provider": "Warpbuild",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "warpbuild-arm64-2x--1",
+      "runnerId": "warpbuild-arm64-2x",
+      "provider": "Warpbuild",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ubicloud-x64-2--1",
+      "runnerId": "ubicloud-x64-2",
+      "provider": "Ubicloud",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ubicloud-premium-x64-2--1",
+      "runnerId": "ubicloud-premium-x64-2",
+      "provider": "Ubicloud",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "ubicloud-arm64-2--1",
+      "runnerId": "ubicloud-arm64-2",
+      "provider": "Ubicloud",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "avrea-x64-2--1",
+      "runnerId": "avrea-x64-2",
+      "provider": "Avrea",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "avrea-arm64-2--1",
+      "runnerId": "avrea-arm64-2",
+      "provider": "Avrea",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "codebuild-x64--1",
+      "runnerId": "codebuild-x64",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "codebuild-x64-8x16--1",
+      "runnerId": "codebuild-x64-8x16",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "codebuild-x64-2x3--1",
+      "runnerId": "codebuild-x64-2x3",
+      "provider": "AWS CodeBuild",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "boat-x64-2x4--1",
+      "runnerId": "boat-x64-2x4",
+      "provider": "boat",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-i7i-large--1",
+      "runnerId": "runson-i7i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m8id-large--1",
+      "runnerId": "runson-m8id-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m9gd-large--1",
+      "runnerId": "runson-m9gd-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-c8g-large--1",
+      "runnerId": "runson-c8g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m9g-large--1",
+      "runnerId": "runson-m9g-large",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m8azn-large--1",
+      "runnerId": "runson-m8azn-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-c8a-large--1",
+      "runnerId": "runson-c8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m8a-large--1",
+      "runnerId": "runson-m8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-r8a-large--1",
+      "runnerId": "runson-r8a-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-r8a-large-tmpfs--1",
+      "runnerId": "runson-r8a-large-tmpfs",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-r9g-large-tmpfs--1",
+      "runnerId": "runson-r9g-large-tmpfs",
+      "provider": "RunsOn",
+      "arch": "arm64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-t8i-medium--1",
+      "runnerId": "runson-t8i-medium",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m8i-large--1",
+      "runnerId": "runson-m8i-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    },
+    {
+      "key": "runson-m8i-flex-large--1",
+      "runnerId": "runson-m8i-flex-large",
+      "provider": "RunsOn",
+      "arch": "x64",
+      "iteration": 1,
+      "status": "unavailable",
+      "reason": "no runner picked up the job"
+    }
+  ]
+}
